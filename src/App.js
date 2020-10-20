@@ -61,9 +61,9 @@ const App = () => {
   if (showPersons) {
     personsDiv = (
       <div >
-        <Person name={personsState.persons[0].name} age={personsState.persons[0].age}>Favorite Food: Pizza</Person>
-        <Person name={personsState.persons[1].name} age={personsState.persons[1].age} />
-        <Person name={personsState.persons[2].name} age={personsState.persons[2].age} inputName={nameInputHandler} />
+        {personsState.persons.map(person => {
+          return <Person name={person.name} age={person.age} />
+        })}
       </div>
     )
   }
