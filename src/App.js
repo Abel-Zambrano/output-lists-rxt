@@ -13,36 +13,19 @@ const App = () => {
             {name: 'Kirby', age: 1}
           ]
   });
-
-  const [ otherState, setOtherState ] = useState({
-    otherState: 'Some value'
-  })
   
   const [ showPersons, setShowpersons ] = useState(false);
 
 //  EVENT HANDLERS =================================================================
-  const switchNameHandler = (newName) => {
-    setPersonsState({
-      persons: [
-        {name: 'Sir Ethan!!', age: 6},
-        {name: newName, age: 3},
-        {name: 'Kirby', age: 1}
-      ]
-    })
-  }
-
-  const nameInputHandler = (event) => {
-    setPersonsState({
-      persons: [
-        {name: 'Ethan', age: 6},
-        {name: 'Chloe', age: 3},
-        {name: event.target.value, age: 1}
-      ]
-    })
-  }
-
   const togglePersonHandler = () => {
     setShowpersons(!showPersons);
+  }
+
+  const deletePersonHandler = (personIndex) => {
+    const persons = personsState.persons;
+    persons.splice(personIndex, 1);
+    setPersonsState({persons: persons})
+
   }
 
 // Inline Styling ================================================================= 
@@ -61,8 +44,8 @@ const App = () => {
   if (showPersons) {
     personsDiv = (
       <div >
-        {personsState.persons.map(person => {
-          return <Person name={person.name} age={person.age} />
+        {personsState.persons.map((person, index) => {
+          return <Person key={index} click={() => deletePersonHandler(index)} name={person.name} age={person.age} />
         })}
       </div>
     )
