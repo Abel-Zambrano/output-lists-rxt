@@ -22,7 +22,8 @@ const App = () => {
   }
 
   const deletePersonHandler = (personIndex) => {
-    const persons = personsState.persons;
+    //const persons = personsState.persons.slice();
+    const persons = [...personsState.persons] // Copy array before manipulating
     persons.splice(personIndex, 1);
     setPersonsState({persons: persons})
 
